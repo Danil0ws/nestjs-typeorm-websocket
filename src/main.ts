@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Nestjs Typeorm Websocket')
     .setDescription('The User API description')
@@ -11,8 +12,7 @@ async function bootstrap() {
     .addTag('User')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-
+  SwaggerModule.setup('docs', app, document);
   await app.listen(3000);
 }
 bootstrap();
