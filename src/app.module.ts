@@ -4,9 +4,14 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AppGateway } from './app.gateway';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [UserModule, ConfigModule],
+  imports: [
+    TypeOrmModule.forRoot({ autoLoadEntities: true }),
+    UserModule,
+    ConfigModule,
+  ],
   controllers: [AppController],
   providers: [AppService, AppGateway],
 })
